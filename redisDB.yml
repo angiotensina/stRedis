@@ -1,0 +1,19 @@
+version: '3.8'  # Especifica la versión de Docker Compose
+
+services:
+  redis:
+    image: redis:latest  # Imagen oficial de Redis
+    container_name: redis_container  # Nombre del contenedor
+    ports:
+      - "6377:6379"  # Mapea el puerto 6379 del contenedor al puerto 6379 de la máquina host
+    volumes:
+      - redis_data:/data  # Persistencia de datos usando un volumen
+    networks:
+      - redis_network  # Conecta el servicio a una red Docker
+
+volumes:
+  redis_data:
+    name: redisRAG  # Nombre específico para el volumen
+
+networks:
+  redis_network: {}  # Define una red para conectar los servicios
