@@ -52,7 +52,8 @@ class ParseMDClass:
                 - organiza todo el texto en una sola pagina separada por parrafos.
                 - Los párrafos no finalizados complétalo con la información existente en la página siguiente, o en el párrafo siguiente.
                 - Organiza en párrafos separados por dos retornos de carro.
-                - Traduce el texto al español.
+                - Traduce el texto completo al español.
+                - Revise el texto y corrija cualquier error de traducción.
             """,
             language="es",
             skip_diagonal_text=False,
@@ -66,9 +67,6 @@ class ParseMDClass:
         # Cargar y procesar el PDF
         documents = parser.load_data(self.pdf_path)
         txt = "".join(doc.text for doc in documents)
-        
-        pdf = MarkdownToPDFConverter(txt, "output.pdf")
-        pdf.convertir_a_pdf()
         
         converter = MarkdownToPDFConverter(txt, f'{self.db_name}_{self.collection_name}_output.pdf')
         converter.convertir_a_pdf()
